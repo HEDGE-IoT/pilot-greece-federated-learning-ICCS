@@ -23,3 +23,17 @@
 
 ---
 
+## Integrated Device Family
+- Shelly 3EM meters
+
+---
+
+## Security and Privacy
+- Customer-level usage forecasts
+- Only model parameters are sent to the server
+- Secure TLS MQTT communication
+
+---
+
+
+
