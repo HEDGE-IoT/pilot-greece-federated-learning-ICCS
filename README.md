@@ -8,6 +8,20 @@
 
 ---
 
+## Functional Requirements 
+1. The system should establish connection and constant communication with installed IoT devices.
+2. The system should send global model updates and receive local model updates by the devices.
+3. The system should orchestrate which nodes participate in the federated learning process.
+4. The system should provide accurate short-term energy consumption forecasts.
+
+--- 
+
+## Non-Functional Requirements 
+- Forecasts should be available every 15 minutes.
+- Access to forecasts should be restricted to authorized users.
+
+---
+
 ## Federated Learning Workflow
 
 The federated learning service follows a centralized orchestration approach in which a server coordinates the training process across a fleet of connected IoT devices.
@@ -37,6 +51,8 @@ The federated learning service follows a centralized orchestration approach in w
 
    * The aggregated global model becomes the latest version of the forecasting model.
    * The updated model is then distributed to all connected devices, starting the next training cycle.
+
+---
 
 ### Data Privacy
 
