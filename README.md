@@ -8,32 +8,40 @@
 
 ---
 
-## Functional Requirements
+## Federated Learning Workflow
 
-1. The system should establish connection and constant communication with installed IoT devices.
-2. The system should send global model updates and receive local model updates by the devices.
-3. The system should orchestrate which nodes participate in the federated learning process.
-4. The system should provide accurate short-term energy consumption forecasts.
+The federated learning service follows a centralized orchestration approach in which a server coordinates the training process across a fleet of connected IoT devices.
 
----
+1. **Global Model Distribution**
 
-## Non-Functional Requirements
-- Forecasts should be available every 15 minutes.
-- Access to forecasts should be restricted to authorized users.
+   * The server maintains the current global forecasting model.
+   * Whenever a new global model is available, it is distributed to all connected devices.
 
----
+2. **Local Training**
 
-## Integrated Device Family
-- Shelly 3EM meters
+   * Each device stores and processes its own energy consumption data locally.
+   * Every 15 minutes, devices train the received global model using their most recent local measurements.
+   * Raw customer data never leaves the device.
 
----
+3. **Participant Selection**
 
-## Security and Privacy
-- Customer-level usage forecasts
-- Only model parameters are sent to the server
-- Secure TLS MQTT communication
+   * At predefined intervals, the server selects a subset of available devices to participate in a federated learning round.
+   * Selection may be based on device availability, connectivity, or orchestration policies.
 
----
+4. **Model Aggregation**
 
+   * Selected devices send their updated model parameters to the server.
+   * The server performs Federated Averaging (FedAvg) to aggregate the local updates into a new global model.
+
+5. **Global Model Update**
+
+   * The aggregated global model becomes the latest version of the forecasting model.
+   * The updated model is then distributed to all connected devices, starting the next training cycle.
+
+### Data Privacy
+
+* Raw energy consumption data remains on the IoT devices.
+* Only model parameters and training metadata are exchanged with the server.
+* Communication between devices and the server is secured through TLS-enabled MQTT connections.
 
 
